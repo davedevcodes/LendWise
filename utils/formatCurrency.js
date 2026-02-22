@@ -5,7 +5,7 @@
  * @param {string} locale
  * @returns {string}
  */
-export function formatCurrency(amount, currency = "USD", locale = "en-US") {
+export function formatCurrency(amount, currency = "NGN", locale = "en-US") {
   if (isNaN(amount) || amount === null || amount === undefined) return "$0.00";
   return new Intl.NumberFormat(locale, {
     style: "currency",

@@ -10,7 +10,7 @@ const loanTypes = ["Personal", "Business", "Mortgage", "Auto", "Education", "Med
 const employmentStatuses = ["Employed", "Self-Employed", "Unemployed", "Retired", "Student"];
 
 const initialState = {
-  fullName: "", email: "", phone: "", address: "",
+  fullName: "", email: "", phone: "", address: "", BVN: "", NIN: "",
   loanType: "", amount: "", employmentStatus: "",
   monthlyIncome: "", purpose: "",
 };
@@ -26,6 +26,8 @@ export default function LoanForm() {
     if (!form.fullName.trim()) errs.fullName = "Full name is required";
     if (!form.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) errs.email = "Valid email is required";
     if (!form.phone.trim()) errs.phone = "Phone number is required";
+    if (!form.BVN.trim()) errs.BVN = "BVN is required";
+    if (!form.NIN.trim()) errs.NIN = "NIN is required";
     if (!form.address.trim()) errs.address = "Address is required";
     if (!form.loanType) errs.loanType = "Loan type is required";
     if (!form.amount || Number(form.amount) < 1000) errs.amount = "Minimum loan amount is $1,000";
@@ -105,6 +107,8 @@ export default function LoanForm() {
           <FormInput label="Email Address" id="email" name="email" type="email" value={form.email} onChange={handleChange} error={errors.email} placeholder="john@example.com" required />
           <FormInput label="Phone Number" id="phone" name="phone" type="tel" value={form.phone} onChange={handleChange} error={errors.phone} placeholder="+1 (555) 000-0000" required />
           <FormInput label="Address" id="address" name="address" value={form.address} onChange={handleChange} error={errors.address} placeholder="123 Main St, City, State" required />
+          <FormInput label="BVN Number" id="BVN" name="BVN" type="tel" value={form.BVN} onChange={handleChange} error={errors.BVN} placeholder="BVN number" required />
+          <FormInput label="NIN Number" id="NIN" name="NIN" type="tel" value={form.NIN} onChange={handleChange} error={errors.NIN} placeholder="NIN number" required />
         </div>
       </div>
 
@@ -116,7 +120,7 @@ export default function LoanForm() {
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <FormSelect label="Loan Type" id="loanType" name="loanType" options={loanTypes} value={form.loanType} onChange={handleChange} error={errors.loanType} placeholder="Select loan type" required />
-          <FormInput label="Loan Amount (USD)" id="amount" name="amount" type="number" min="1000" value={form.amount} onChange={handleChange} error={errors.amount} placeholder="10000" required />
+          <FormInput label="Loan Amount (NGN)" id="amount" name="amount" type="number" min="1000" value={form.amount} onChange={handleChange} error={errors.amount} placeholder="10000" required />
         </div>
       </div>
 
@@ -128,7 +132,7 @@ export default function LoanForm() {
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <FormSelect label="Employment Status" id="employmentStatus" name="employmentStatus" options={employmentStatuses} value={form.employmentStatus} onChange={handleChange} error={errors.employmentStatus} placeholder="Select status" required />
-          <FormInput label="Monthly Income (USD)" id="monthlyIncome" name="monthlyIncome" type="number" min="0" value={form.monthlyIncome} onChange={handleChange} error={errors.monthlyIncome} placeholder="5000" required />
+          <FormInput label="Monthly Income (NGN)" id="monthlyIncome" name="monthlyIncome" type="number" min="0" value={form.monthlyIncome} onChange={handleChange} error={errors.monthlyIncome} placeholder="5000" required />
         </div>
         <div className="mt-4">
           <FormTextarea label="Loan Purpose" id="purpose" name="purpose" value={form.purpose} onChange={handleChange} error={errors.purpose} placeholder="Please describe why you need this loan and how you plan to use the funds..." required />
